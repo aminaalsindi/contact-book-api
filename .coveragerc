@@ -1,0 +1,11 @@
+[run]
+source = day2
+omit =
+    test_*
+    */__pycache__/*
+
+[report]
+show_missing = true
+
+[html]
+directory = htmlcov
