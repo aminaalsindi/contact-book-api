@@ -1,0 +1,33 @@
+name: Contact Project CI
+
+on:
+  push:
+    paths:
+      - 'contact/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'contact/**'
+      - '.github/workflows/ci.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flask pytest pytest-cov
+
+      - name: Run contact tests
+        run: |
+          pytest contact/test_contacts_app.py --cov=contact.contacts_db --cov=contact.contacts_app --cov-report=term-missing -v
