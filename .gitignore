@@ -12,3 +12,5 @@ htmlcov/
 .idea/
 *.log
 prev/
+contacts.db
+.coveragerc
